@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>關於展覽 | 畢業展標題</title>
+  <meta name="description" content="了解本年度畢業製作的策展理念，以及參展創作者的背景介紹。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ─── 關於頁面專屬樣式 ────────────────────────────────────────────── */
+
+    /* 策展理念 */
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    /* TODO [intermediate] 試著讓這個區塊在手機上變成單欄（hint：用 @media query） */
+
+    .about-intro-text h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-primary);
+    }
+
+    .about-intro-text p {
+      color: var(--color-text-muted);
+      line-height: 1.9;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .about-intro-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .about-intro-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 藝術家卡片 */
+    .artists-section {
+      background: var(--color-surface);
+      padding: var(--spacing-xl) 0;
+    }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .artist-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .artist-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .artist-avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .artist-info {
+      padding: var(--spacing-sm);
+    }
+
+    .artist-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .artist-info .artist-specialty {
+      font-size: 0.8rem;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .artist-info p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* 時間軸 */
+    .timeline-section {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--color-border);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      padding-left: 0;
+    }
+
+    .timeline-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 2px solid var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--color-primary);
+      font-size: 0.85rem;
+      z-index: 1;
+    }
+
+    .timeline-content h4 {
+      color: var(--color-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-content p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Navbar ═══════════════════════════════════════════════════════════ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">畢業展標題</a>
+      <button class="hamburger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="gallery.html">作品展示</a></li>
+        <li><a href="about.html">關於展覽</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ Page Header ═══════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <div class="container">
+      <h1>關於展覽</h1>
+      <p>About — 策展理念 × 創作者介紹</p>
+    </div>
+  </header>
+
+  <!-- ═══ Main ══════════════════════════════════════════════════════════════ -->
+  <main>
+
+    <!-- 策展理念 -->
+    <section class="section">
+      <div class="container">
+        <!-- TODO [beginner] 修改以下的展覽介紹文字 -->
+        <div class="about-intro">
+          <div class="about-intro-text reveal">
+            <h2>展覽理念標題</h2>
+            <p>
+              這段文字將用來介紹你們的展覽主題或畢業製作的核心理念。
+              請在這裡寫下你們選擇這個主題的原因，以及希望傳達給觀展者的重點。
+            </p>
+            <p>
+              本次聯展邀集多位創作者，各自以不同的方式探索創作的多元面向。
+              沒有標準答案，只有誠實的觀看方式。這是一份對學習歷程的總結。
+            </p>
+            <!-- TODO [intermediate] 加上一個「展覽簡介 PDF 下載」的連結按鈕 -->
+            <a href="gallery.html" class="btn btn-primary" style="margin-top: 1rem;">探索作品 →</a>
+          </div>
+          <div class="about-intro-image reveal reveal-delay-1">
+            <!-- TODO [beginner] 換成你自己的展覽照片 -->
+            <img src="https://picsum.photos/seed/about2024/800/600" alt="展覽現場" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 創作者介紹 -->
+    <section class="artists-section">
+      <div class="container">
+        <h2 class="section-title reveal">參展創作者</h2>
+        <p class="section-subtitle reveal">Our Creators</p>
+        <div class="section-divider reveal"></div>
+
+        <!-- TODO [beginner] 修改每位創作者的姓名、專長和介紹文字 -->
+        <!-- TODO [intermediate] 新增更多創作者的卡片 -->
+        <div class="artists-grid">
+
+          <div class="artist-card reveal">
+            <img src="https://picsum.photos/seed/artist1/400/400" alt="作者A" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者A</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-palette"></i> 專長領域一
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+          <div class="artist-card reveal reveal-delay-1">
+            <img src="https://picsum.photos/seed/artist2/400/400" alt="作者B" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者B</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-laptop"></i> 專長領域二
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+          <div class="artist-card reveal reveal-delay-2">
+            <img src="https://picsum.photos/seed/artist3/400/400" alt="作者C" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者C</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-shapes"></i> 專長領域三
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+          <div class="artist-card reveal">
+            <img src="https://picsum.photos/seed/artist4/400/400" alt="作者D" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者D</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-camera"></i> 專長領域四
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+          <div class="artist-card reveal reveal-delay-1">
+            <img src="https://picsum.photos/seed/artist5/400/400" alt="作者E" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者E</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-pen-nib"></i> 專長領域五
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+          <div class="artist-card reveal reveal-delay-2">
+            <img src="https://picsum.photos/seed/artist6/400/400" alt="作者F" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者F</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-screwdriver-wrench"></i> 專長領域六
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+          <div class="artist-card reveal">
+            <img src="https://picsum.photos/seed/artist7/400/400" alt="作者G" class="artist-avatar" loading="lazy" />
+            <div class="artist-info">
+              <h3>作者G</h3>
+              <p class="artist-specialty">
+                <i class="fa-solid fa-code"></i> 專長領域七
+              </p>
+              <p>在這裡寫入這名創作者的專長與擅長的表現手法。</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 展覽時間軸 -->
+    <section class="timeline-section">
+      <div class="container">
+        <h2 class="section-title reveal">展覽時程</h2>
+        <p class="section-subtitle reveal">Schedule</p>
+        <div class="section-divider reveal"></div>
+
+        <!-- TODO [beginner] 修改以下的時程資訊 -->
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fa-solid fa-flag"></i></div>
+            <div class="timeline-content">
+              <h4>05/01 開幕活動</h4>
+              <p>導覽介紹，下午 14:00 開放參觀。</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fa-solid fa-comments"></i></div>
+            <div class="timeline-content">
+              <h4>05/10 創作者座談</h4>
+              <p>探討本屆作品的發展歷程與背後故事。</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fa-solid fa-users"></i></div>
+            <div class="timeline-content">
+              <h4>05/18 交流工作坊</h4>
+              <p>針對特定媒材進行深入交流與體驗活動。</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fa-solid fa-star"></i></div>
+            <div class="timeline-content">
+              <h4>05/31 閉幕式</h4>
+              <p>展覽最終日，回顧整體策展經過，為活動畫下句點。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ Footer ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>畢業展標題</h3>
+        <p>這是一段簡單的展覽說明文字。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="gallery.html">作品展示</a></li>
+          <li><a href="about.html">關於展覽</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i> contact@example.com</a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i> @example.exhibition</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2024 畢業展標題. All rights reserved.</p>
+  </footer>
+
+  <!-- ═══ Scripts ════════════════════════════════════════════════════════════ -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

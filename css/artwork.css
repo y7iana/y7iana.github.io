@@ -1,0 +1,135 @@
+/*
+ * artwork.css — 作品詳細頁專屬樣式
+ *
+ * 學習重點：
+ *  - CSS Grid 兩欄式版面
+ *  - position: sticky（讓圖片固定在視窗）
+ *  - 標籤清單的 Flexbox 排列
+ */
+
+/* ─── 作品詳細頁主體 ────────────────────────────────────────────────────────── */
+.artwork-detail {
+  padding: calc(var(--navbar-height) + var(--spacing-lg)) 0 var(--spacing-xl);
+}
+
+.artwork-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+/* TODO [intermediate] 試著改成 3fr 2fr，讓圖片區佔更多空間 */
+
+/* ─── 左側：圖片 ────────────────────────────────────────────────────────────  */
+.artwork-image-section {
+  /* sticky 會讓圖片在滾動時固定在畫面上（需要父層有足夠高度） */
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--spacing-md));
+}
+
+.artwork-main-image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.artwork-image-caption {
+  margin-top: var(--spacing-xs);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ─── 右側：資訊 ────────────────────────────────────────────────────────────  */
+.artwork-info h1 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  margin-bottom: var(--spacing-xs);
+}
+
+.artwork-artist-line {
+  color: var(--color-primary);
+  font-size: 1rem;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.artwork-meta {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-sm) 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.meta-label {
+  color: var(--color-text-muted);
+}
+
+.meta-value {
+  color: var(--color-text);
+}
+
+/* TODO [beginner] 新增更多 meta-row，例如顯示「展出地點」或「作品尺寸」 */
+
+.artwork-description {
+  line-height: 1.9;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ─── 標籤 ─────────────────────────────────────────────────────────────────  */
+.artwork-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.tag {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* ─── 返回按鈕 ──────────────────────────────────────────────────────────────  */
+.artwork-nav-links {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+/* ─── 找不到作品 ────────────────────────────────────────────────────────────  */
+.not-found {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ─── RWD ──────────────────────────────────────────────────────────────────  */
+@media (max-width: 768px) {
+  .artwork-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .artwork-image-section {
+    position: static;
+  }
+}

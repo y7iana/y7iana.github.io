@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>作品展示 | 畢業展標題</title>
+  <meta name="description" content="瀏覽 2024 畢業展的全部作品，涵蓋多種跨領域創作媒材。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
+</head>
+<body>
+
+  <!-- ═══ Navbar ═══════════════════════════════════════════════════════════ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">畢業展標題</a>
+      <button class="hamburger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="gallery.html">作品展示</a></li>
+        <li><a href="about.html">關於展覽</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ Page Header ═══════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <div class="container">
+      <h1>作品展示</h1>
+      <!-- TODO [beginner] 修改這裡的副標題 -->
+      <p>Gallery — 多件作品，多種媒材</p>
+    </div>
+  </header>
+
+  <!-- ═══ Main Content ══════════════════════════════════════════════════════ -->
+  <main class="section">
+    <div class="container">
+
+      <!-- 篩選按鈕列 -->
+      <!-- TODO [intermediate] 新增一個新的篩選按鈕，並在 artworks.js 加入對應 category 的作品 -->
+      <div class="filter-bar" role="group" aria-label="作品分類篩選">
+        <button class="filter-btn active" data-category="all">全部</button>
+        <button class="filter-btn" data-category="painting">平面</button>
+        <button class="filter-btn" data-category="sculpture">立體</button>
+        <button class="filter-btn" data-category="digital">數位</button>
+        <button class="filter-btn" data-category="photography">攝影</button>
+      </div>
+
+      <!-- 作品 Grid（由 gallery.js 動態填入） -->
+      <div id="gallery-grid">
+        <!-- JavaScript 會把作品卡片插入這裡 -->
+        <!-- TODO [challenge] 試著不用 JS，直接手動寫 HTML 卡片，了解 JS 動態生成的好處 -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Lightbox（點擊作品圖片後彈出的大圖） -->
+  <!-- TODO [intermediate] 試著修改 lightbox 的背景顏色（在 gallery.css 找 #lightbox） -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="作品大圖">
+    <button id="lightbox-close" aria-label="關閉">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p id="lightbox-title"></p>
+  </div>
+
+  <!-- ═══ Footer ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>畢業展標題</h3>
+        <p>這是一段簡單的展覽說明文字。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="gallery.html">作品展示</a></li>
+          <li><a href="about.html">關於展覽</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i> contact@example.com</a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i> @example.exhibition</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2024 畢業展標題. All rights reserved.</p>
+  </footer>
+
+  <!-- ═══ Scripts ════════════════════════════════════════════════════════════ -->
+  <script src="js/artworks.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gallery.js"></script>
+
+</body>
+</html>

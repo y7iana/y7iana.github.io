@@ -1,103 +1,406 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-<title>協同演辯社</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/css/home.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TODO [beginner] 修改 title 標籤，這是顯示在瀏覽器分頁上的文字 -->
+  <title>畢業展標題 | 2024 畢業製作展示</title>
+  <meta name="description" content="2024 年度畢業製作展示，匯聚多位創作者，展現多元的創作面向。" />
+
+  <!-- Google Fonts：用 CDN 引入字型，不需要安裝任何東西 -->
+  <!-- TODO [beginner] 試著換一個不同的 Google Font，在 fonts.google.com 找你喜歡的 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome：用 CDN 引入 icon，直接用 <i class="fa-solid fa-..."> 即可 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Swiper.js：現代感輪播 library，以 CDN 引入 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- 自訂樣式（全站共用） -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* ─── 首頁專用樣式（這裡只放首頁用到的樣式） ─────────────────────────── */
+
+    /* Hero Section（全版首圖） */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* TODO [beginner] 換掉這個背景圖片網址，試試不同的 picsum.photos seed 數字 */
+      background:
+        linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.7) 60%, rgba(13,13,13,1) 100%),
+        url('https://picsum.photos/seed/hero2024/1600/900') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: var(--spacing-md);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.1;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .hero-title span {
+      color: var(--color-primary);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-md);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: var(--spacing-md);
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* 展覽資訊卡片 */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-lg);
+    }
+
+    .info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      text-align: center;
+    }
+
+    .info-card i {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+      color: var(--color-text);
+    }
+
+    /* Swiper 輪播 */
+    .swiper-section {
+      background: var(--color-surface);
+      padding: var(--spacing-xl) 0;
+    }
+
+    .swiper {
+      padding-bottom: 50px !important;
+    }
+
+    .swiper-slide {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .swiper-slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    }
+
+    .swiper-slide-caption h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .swiper-slide-caption p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .swiper-pagination-bullet {
+      background: var(--color-primary) !important;
+    }
+
+    /* 統計數字 */
+    .stats-section {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--spacing-md);
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 3rem;
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+    }
+
+    .stat-item p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-  <h1>協同演辯社</h1>
-  <h4>不服來辯</h4>
-</div>
+  <!-- ═══ Navbar ═══════════════════════════════════════════════════════════ -->
+  <!-- TODO [beginner] 修改 "畢業展標題" 改成你的展覽名稱 -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">畢業展標題</a>
+      <button class="hamburger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="gallery.html">作品展示</a></li>
+        <li><a href="about.html">關於展覽</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<!-- Navigation Bar -->
-<div class="navbar">
-  <a href="/home.html">Home</a>
-  <a href="/History.html">History</a>
-  <a href="/admin.html">Admin</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScOVcPyctZ43G9oGqiAtUcFYYDq-mtNg9wQVM9mSV-cKs1k_w/viewform?usp=sf_link" target="_blank">Join Us</a>
-  <a href="https://www.instagram.com/cms_debate/?hl=zh-tw" target="_blank">Follow Us</a>
-  <a href="/Login.html">Log In</a>
-</div>
+  <!-- ═══ Hero Section ═════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <!-- TODO [beginner] 修改以下的展覽標題、副標題和日期 -->
+      <p class="hero-eyebrow">2024 年度展覽</p>
+      <h1 class="hero-title">畢業<span>展標題</span></h1>
+      <p class="hero-subtitle">
+        多位參展創作者，橫跨不同領域與媒材，<br />
+        共同呈現學習成果與創作心血。
+      </p>
+      <div class="hero-actions">
+        <a href="gallery.html" class="btn btn-primary">探索作品</a>
+        <a href="about.html" class="btn btn-outline">了解更多</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>SCROLL</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
 
-<!-- The flexible grid (content) -->
-<div class="row">
-  <div class="side">
-    <h3>你/妳想知道的都在這裡</h3>
-    <p>快速通道</p>
-    <a href="#三個問題" class="chooser">三個問題速解辯論</a><br>
-    <a href="#演辯社活動" class="chooser">協同演辯社的活動</a><br>
-    <a href="#更精進" class="chooser">如果我想要更精進</a><br>
-  </div>
-  <div class="main">
-    <h2 id="三個問題">三個問題帶你看辯論</h2>
-    <h3>1. 辯論是什麼？</h3>
-    <p>辯論是指對某個議題或主張，以言語為主要方式，為分辨不同立場之正確或優劣而進行的一種討論方式</p>
-    <img src="/photos/網內互打.jpg" alt="" style="height: 200px;">
-    <h3>2. 為什麼要辯論</h3>
-    <p>辯論的最終目的在於選擇。<br>
-      辯論，這個活動的根本意義就是讓每一個聽者去抉擇能讓自己信服的答案。<br>
-      一個事先決定要相信哪方的人不會來聽辯論，因為他沒有給自己選擇的空間<br>
-      相反的，每一個坐在辯論台底下的人，
-      心中何嘗不是希望台上辯士能給自己一個做出判斷的引領，
-      試圖為自己的人生找尋更多的可能性。<br>
-      辯士的精神就在於此，充分的準備、完整的論述，
-      我們絕不是在思索著如何讓聽眾聽到自己想聽的東西，
-      而是如何帶領聽眾進入一個全新的發想空間，引導他們做出最終的判斷。</p>
-    <img src="/photos/綠芽準備過程.jpg" alt="" style="height: 200px;">
-    <h3>3. 辯論能帶給你什麼？</h3>
-    <p>找到了一群志同道合的朋友<br>
-      開拓視野，增長學識。<br>
-      邏輯思考，找出真理<br>
-    </p>
-    <img src="/photos/辯論 大合照.jpg" alt="" style="height: 200px;">
-    <h2 id="演辯社活動">協同演辯社的活動</h2>
-    <h3>1. 社課</h3>
-    <p>學期的三分之二時間，會有專業的社師帶領我們進入辯論的世界，從最基礎的「需根解損」，到比較進階的「損益比」，不論是不是初學者，社師都會用最簡單的方式，教導我們在場上的規則與技巧、資料詮釋與口傳技術</p>
-    <img src="/photos/辯論 課程.jpg" alt="社課" style="height: 200px;">
-    <p></p>
-    <img src="/photos/辯論 社師.jpg" style="height: 200px">
-    <h3>2. 小組討論</h3>
-    <p>我們相信辯論的過程是一種討論，而小組討論自然也是社課中不可或缺的一環，每堂社課都會有小組討論的環節，希望哪怕是比較害羞的人，都可以在組內說一點話，學習如何溝通、討論
-    </p>
-    <img src="/photos/辯論 小組討論.jpg" alt="小組討論" style="height: 200px;">
-    <p></p>
-    <img src="/photos/辯論 課堂分享.jpg" alt="小組討論" style="height: 200px;">
+  <!-- ═══ 展覽資訊 ═══════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <!-- TODO [beginner] 修改展覽的日期、地點、票價 -->
+      <div class="info-cards">
+        <div class="info-card reveal">
+          <i class="fa-regular fa-calendar"></i>
+          <h4>展出期間</h4>
+          <p>2024.05.01 – 05.31</p>
+        </div>
+        <div class="info-card reveal reveal-delay-1">
+          <i class="fa-solid fa-location-dot"></i>
+          <h4>展出地點</h4>
+          <p>校內展演中心 3F 展覽廳</p>
+        </div>
+        <div class="info-card reveal reveal-delay-2">
+          <i class="fa-solid fa-ticket"></i>
+          <h4>入場票價</h4>
+          <p>免費參觀</p>
+        </div>
+        <div class="info-card reveal reveal-delay-3">
+          <i class="fa-regular fa-clock"></i>
+          <h4>開放時間</h4>
+          <p>週二～週日 10:00–18:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h3>3. 社內賽</h3>
-    <p>每個學期最後的社內賽總是歷屆社員們最期待的環節！各組會針對辯題進行討論，並在課堂上實戰演練，在講台上盡顯鋒芒
-    </p>
-    <img src="/photos/辯論 社內賽.jpg" alt="社內賽" style="height: 200px;">
-    <p></p>
-    <img src="/photos//辯論 社內賽2.jpg" alt="社內賽" style="height: 200px;">
+  <!-- ═══ 精選作品輪播（Swiper.js） ═══════════════════════════════════════════ -->
+  <section class="swiper-section">
+    <div class="container">
+      <h2 class="section-title reveal">精選作品</h2>
+      <p class="section-subtitle reveal">Featured Works</p>
+      <div class="section-divider reveal"></div>
 
-    <h2 id="更精進">如果我想要在辯論的路上更精進，我該...</h2>
-    <h3>1. 試著參與校外盃賽</h3>
-    <p>校外盃賽是踏出同溫層的開始，也是比賽強度的真正提升，如果想要精進自己的辯論技巧，參與一兩個甚至更多都是可以的！</p>
-    <img src="/photos/DSCF3338.jpg" alt="校外盃賽" style="height: 200px;">
-    <h3>2. 試著參與社務處理</h3>
-    <p>社團事務的參與也是社團中重要的一環，在其中可以學習到處理文書、管理的技能，嘗試在社團中爭取擔任幹部的機會！
-    </p>
-    <img src="/photos/辯論 幹部合照.jpg" alt="幹部們" style="height: 200px;">
-    <h3>3. 與他校社團交流</h3>
-    <p>
-    每年與雄中、麗山高中共同舉辦的聯合社課也是社團很重要的活動之一，在這其中可以接受辯圈知名辯手的教學、指導，更可以認識很多來自外校志同道合的朋友喔！！
-    </p>
-    <img src="/photos/2020聯合社課.jpg" alt="聯合社課" style="height: 200px;">
+      <!-- TODO [intermediate] Swiper 有很多參數可以調整，試著在下方 JS 修改 autoplay 速度、 slides 數量等 -->
+      <div class="swiper mySwiper reveal">
+        <div class="swiper-wrapper" id="featured-swiper">
+          <!-- 由 JS 動態填入 -->
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
 
+      <div style="text-align:center; margin-top: var(--spacing-md);">
+        <a href="gallery.html" class="btn btn-outline">查看全部作品 →</a>
+      </div>
+    </div>
+  </section>
 
-  </div>
-</div>
+  <!-- ═══ 統計數字 ════════════════════════════════════════════════════════════ -->
+  <section class="stats-section">
+    <div class="container">
+      <!-- TODO [beginner] 修改以下的數字和說明文字 -->
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <h3>7</h3>
+          <p>參展創作者</p>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <h3>4</h3>
+          <p>創作媒材分類</p>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <h3>31</h3>
+          <p>展出天數</p>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <h3>100%</h3>
+          <p>我們的用心</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Footer -->
-<div class="footer" style="align-content: center;">聯絡資訊:<br><br>
-  <div>社長 孫維辰<br>副社長 施閔智: 0906181608<br>公關 張薰方<br><a href="https://www.instagram.com/cms_debate/?hl=zh-tw" target="_blank">協同演辯IG</a></div>
-  <div><a href="/大港自造節.html">Mega Maker Day</a></div>
-</div>
+  <!-- ═══ Footer ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <!-- TODO [beginner] 修改展覽名稱和描述 -->
+        <h3>畢業展標題</h3>
+        <p>這是一段簡單的展覽說明文字。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="gallery.html">作品展示</a></li>
+          <li><a href="about.html">關於展覽</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <!-- TODO [beginner] 換成真實的聯絡資訊 -->
+          <li><a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i> contact@example.com</a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i> @example.exhibition</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2024 畢業展標題. All rights reserved.</p>
+  </footer>
+
+  <!-- ═══ Scripts ════════════════════════════════════════════════════════════ -->
+  <!-- Swiper.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- 作品資料（必須在 main.js 之前載入） -->
+  <script src="js/artworks.js"></script>
+  <!-- 全站共用邏輯 -->
+  <script src="js/main.js"></script>
+
+  <script>
+    // ─── 首頁：填入精選輪播資料 ─────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      const swiperWrapper = document.getElementById('featured-swiper');
+      const featured = getFeaturedArtworks(); // 來自 artworks.js
+
+      // TODO [intermediate] 試著修改 slide 的 HTML 結構，加上更多資訊
+      swiperWrapper.innerHTML = featured.map(artwork => `
+        <div class="swiper-slide">
+          <a href="artwork.html?id=${artwork.id}">
+            <img src="${artwork.image}" alt="${artwork.title}" loading="lazy" />
+            <div class="swiper-slide-caption">
+              <h3>${artwork.title}</h3>
+              <p>${artwork.artist}，${artwork.year}</p>
+            </div>
+          </a>
+        </div>
+      `).join('');
+
+      // 初始化 Swiper
+      // TODO [challenge] 閱讀 Swiper 官方文件（swiperjs.com），試著加上更多效果
+      new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        slidesPerView: 1,
+        spaceBetween: 24,
+        pagination: { el: ".swiper-pagination", clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        breakpoints: {
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+    });
+  </script>
 
 </body>
 </html>

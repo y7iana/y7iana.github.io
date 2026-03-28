@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>聯絡我們 | 畢業展標題</title>
+  <meta name="description" content="聯絡展覽單位，查詢展覽相關資訊或預約參觀。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ─── 聯絡頁面樣式 ────────────────────────────────────────────────── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--spacing-xl);
+      align-items: start;
+    }
+
+    /* 聯絡資訊欄 */
+    .contact-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-primary);
+    }
+
+    .contact-info p {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-detail i {
+      color: var(--color-primary);
+      font-size: 1rem;
+      margin-top: 3px;
+      width: 20px;
+    }
+
+    .contact-detail div h4 {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail div p {
+      font-size: 0.95rem;
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    /* 聯絡表單 */
+    .contact-form-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+    }
+
+    .contact-form-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* TODO [beginner] 修改 label 的字型大小和顏色 */
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+
+    /* TODO [beginner] 當使用者點選輸入框時，border 顏色改變（:focus 效果） */
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--color-primary);
+    }
+
+    .form-group input.error,
+    .form-group textarea.error {
+      border-color: #e55;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-group select option {
+      background: var(--color-surface);
+    }
+
+    .error-msg {
+      font-size: 0.8rem;
+      color: #e55;
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: var(--spacing-sm);
+    }
+
+    /* 送出成功訊息 */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: var(--spacing-md);
+      background: rgba(201, 169, 110, 0.1);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      color: var(--color-primary);
+      margin-top: var(--spacing-sm);
+    }
+
+    .success-msg.show {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Navbar ═══════════════════════════════════════════════════════════ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">畢業展標題</a>
+      <button class="hamburger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="gallery.html">作品展示</a></li>
+        <li><a href="about.html">關於展覽</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ Page Header ═══════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <div class="container">
+      <h1>聯絡我們</h1>
+      <p>Contact — 有任何問題都歡迎與我們聯繫</p>
+    </div>
+  </header>
+
+  <!-- ═══ Main ══════════════════════════════════════════════════════════════ -->
+  <main class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- 左側：聯絡資訊 -->
+        <!-- TODO [beginner] 修改以下的聯絡資訊 -->
+        <div class="contact-info reveal">
+          <h2>展館資訊</h2>
+          <p>歡迎親臨展場參觀，或透過以下方式與我們聯絡，我們將盡快回覆。</p>
+
+          <div class="contact-detail">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <h4>展館地址</h4>
+              <p>校內展演中心 3 樓</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <i class="fa-regular fa-clock"></i>
+            <div>
+              <h4>開放時間</h4>
+              <p>週二至週日 10:00–18:00<br />（週一公休）</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <h4>電子郵件</h4>
+              <p><a href="mailto:contact@example.com">contact@example.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <i class="fa-brands fa-instagram"></i>
+            <div>
+              <h4>Instagram</h4>
+              <p><a href="#">@example.exhibition</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右側：聯絡表單 -->
+        <div class="contact-form-card reveal reveal-delay-1">
+          <h2>傳送訊息</h2>
+
+          <!--
+            這是一個純 HTML 表單，不需要後端伺服器
+            TODO [challenge] 試著用 JavaScript 實作表單驗證：
+              1. 姓名不能是空白
+              2. Email 格式要正確（hint：用正規表達式 regex）
+              3. 訊息不能少於 10 個字元
+              送出後顯示成功訊息，並清空表單
+          -->
+          <form id="contact-form" novalidate>
+
+            <div class="form-group">
+              <label for="name">姓名 <span style="color:#e55">*</span></label>
+              <input type="text" id="name" name="name" placeholder="你的名字" />
+              <p class="error-msg" id="name-error">請輸入姓名</p>
+            </div>
+
+            <div class="form-group">
+              <label for="email">電子郵件 <span style="color:#e55">*</span></label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" />
+              <p class="error-msg" id="email-error">請輸入有效的電子郵件</p>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">詢問類別</label>
+              <select id="subject" name="subject">
+                <option value="">請選擇</option>
+                <option value="ticket">票務問題</option>
+                <option value="group">團體參觀</option>
+                <option value="media">媒體採訪</option>
+                <option value="other">其他問題</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">訊息內容 <span style="color:#e55">*</span></label>
+              <textarea id="message" name="message" placeholder="請輸入您的問題或想說的話…"></textarea>
+              <p class="error-msg" id="message-error">訊息至少需要 10 個字元</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              <i class="fa-solid fa-paper-plane"></i> 送出訊息
+            </button>
+
+            <div class="success-msg" id="success-msg">
+              <i class="fa-solid fa-circle-check"></i>
+              訊息已送出！我們將盡快回覆您。
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ Footer ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>畢業展標題</h3>
+        <p>這是一段簡單的展覽說明文字。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="gallery.html">作品展示</a></li>
+          <li><a href="about.html">關於展覽</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i> contact@example.com</a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i> @example.exhibition</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2024 畢業展標題. All rights reserved.</p>
+  </footer>
+
+  <!-- ═══ Scripts ════════════════════════════════════════════════════════════ -->
+  <script src="js/main.js"></script>
+  <script>
+    /**
+     * 表單驗證邏輯
+     *
+     * 學習重點：
+     *  - 表單的 submit 事件與 preventDefault()
+     *  - 正規表達式（Regex）驗證 email 格式
+     *  - 動態新增/移除 CSS class 來顯示錯誤訊息
+     */
+
+    // TODO [challenge] 目前這裡是完整的範例程式碼，你的任務是：
+    //   1. 讀懂每一行的意思
+    //   2. 試著在 console.log 加入 debug 訊息，幫助你理解流程
+    //   3. 新增一個「字數計數器」，顯示 textarea 還能輸入幾個字
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // 阻止表單的預設送出行為（會重新整理頁面）
+
+      let isValid = true;
+
+      // 驗證姓名
+      const name = document.getElementById('name');
+      if (name.value.trim() === '') {
+        name.classList.add('error');
+        document.getElementById('name-error').classList.add('show');
+        isValid = false;
+      } else {
+        name.classList.remove('error');
+        document.getElementById('name-error').classList.remove('show');
+      }
+
+      // 驗證 Email（使用正規表達式）
+      const email = document.getElementById('email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // TODO [intermediate] 試著理解這個 Regex 的意思，並在 MDN 查詢更多關於正規表達式的資料
+      if (!emailRegex.test(email.value)) {
+        email.classList.add('error');
+        document.getElementById('email-error').classList.add('show');
+        isValid = false;
+      } else {
+        email.classList.remove('error');
+        document.getElementById('email-error').classList.remove('show');
+      }
+
+      // 驗證訊息長度
+      const message = document.getElementById('message');
+      if (message.value.trim().length < 10) {
+        message.classList.add('error');
+        document.getElementById('message-error').classList.add('show');
+        isValid = false;
+      } else {
+        message.classList.remove('error');
+        document.getElementById('message-error').classList.remove('show');
+      }
+
+      // 全部驗證通過 → 顯示成功訊息
+      if (isValid) {
+        document.getElementById('success-msg').classList.add('show');
+        this.reset(); // 清空表單
+        // TODO [challenge] 試著用 setTimeout 讓成功訊息在 5 秒後自動消失
+      }
+    });
+  </script>
+
+</body>
+</html>

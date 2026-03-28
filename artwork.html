@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>作品詳細 | 畢業展標題</title>
+  <meta name="description" content="查看作品的詳細介紹、創作背景與創作者資訊。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/artwork.css" />
+</head>
+<body>
+
+  <!-- ═══ Navbar ═══════════════════════════════════════════════════════════ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">畢業展標題</a>
+      <button class="hamburger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="gallery.html">作品展示</a></li>
+        <li><a href="about.html">關於展覽</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ 作品詳細（由 JS 動態填入） ════════════════════════════════════════ -->
+  <main class="artwork-detail container" id="artwork-content">
+    <!-- JS 會在這裡填入作品內容 -->
+    <p style="text-align:center; padding: 4rem 0; color: var(--color-text-muted);">載入中…</p>
+  </main>
+
+  <!-- ═══ Footer ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>畢業展標題</h3>
+        <p>這是一段簡單的展覽說明文字。</p>
+      </div>
+      <div class="footer-links">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="gallery.html">作品展示</a></li>
+          <li><a href="about.html">關於展覽</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i> contact@example.com</a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i> @example.exhibition</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© 2024 畢業展標題. All rights reserved.</p>
+  </footer>
+
+  <!-- ═══ Scripts ════════════════════════════════════════════════════════════ -->
+  <script src="js/artworks.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /**
+     * 作品詳細頁邏輯
+     *
+     * 學習重點：
+     *  - URLSearchParams：從網址讀取參數（?id=1）
+     *  - 根據資料動態產生 HTML 內容
+     *  - document.title 動態修改瀏覽器標籤標題
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. 從網址讀取 ?id=N 參數
+      // TODO [intermediate] 試著用 console.log(params) 看看 URLSearchParams 的輸出
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+
+      const container = document.getElementById('artwork-content');
+
+      // 2. 找對應的作品資料
+      const artwork = getArtworkById(id); // 來自 artworks.js
+
+      // 3. 找不到作品時顯示錯誤訊息
+      if (!artwork) {
+        container.innerHTML = `
+          <div class="not-found">
+            <h2>找不到這件作品</h2>
+            <p style="color: var(--color-text-muted); margin-bottom: 2rem;">
+              作品編號 #${id} 不存在，請回到作品列表重新選擇。
+            </p>
+            <a href="gallery.html" class="btn btn-primary">← 回到作品列表</a>
+          </div>
+        `;
+        return;
+      }
+
+      // 4. 更新瀏覽器標籤標題
+      document.title = `${artwork.title} | 畢業展標題`;
+
+      // 5. 分類中文對應
+      const categoryLabels = {
+        painting: '平面', sculpture: '立體',
+        digital: '數位', photography: '攝影'
+      };
+
+      // 6. 填入 HTML
+      // TODO [challenge] 新增「上一件 / 下一件」按鈕，讓使用者可以在作品間切換
+      // TODO [intermediate] 在 artwork-meta 區塊新增更多欄位，例如「作品尺寸」
+      container.innerHTML = `
+        <div class="artwork-layout">
+
+          <!-- 左側：圖片 -->
+          <div class="artwork-image-section reveal">
+            <img
+              src="${artwork.image}"
+              alt="${artwork.title}"
+              class="artwork-main-image"
+            />
+            <p class="artwork-image-caption">
+              <i class="fa-regular fa-image"></i> ${artwork.title}，${artwork.year}
+            </p>
+          </div>
+
+          <!-- 右側：資訊 -->
+          <div class="artwork-info reveal reveal-delay-1">
+            <h1>${artwork.title}</h1>
+            <p class="artwork-artist-line">
+              <i class="fa-solid fa-user-pen"></i>
+              ${artwork.artist}
+            </p>
+
+            <!-- 作品基本資料 -->
+            <div class="artwork-meta">
+              <div class="meta-row">
+                <span class="meta-label">年份</span>
+                <span class="meta-value">${artwork.year}</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">媒材</span>
+                <span class="meta-value">${artwork.medium}</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">分類</span>
+                <span class="meta-value">${categoryLabels[artwork.category] || artwork.category}</span>
+              </div>
+              <!-- TODO [beginner] 新增更多 meta-row，例如展出地點、作品尺寸 -->
+            </div>
+
+            <!-- 作品介紹 -->
+            <p class="artwork-description">${artwork.description}</p>
+
+            <!-- 標籤 -->
+            <div class="artwork-tags">
+              <span class="tag">#${categoryLabels[artwork.category] || artwork.category}</span>
+              <span class="tag">#${artwork.year}</span>
+              <span class="tag">#畢業製作</span>
+              <!-- TODO [intermediate] 在 artworks.js 的每件作品加上 tags 陣列，並在這裡動態渲染 -->
+            </div>
+
+            <!-- 導覽按鈕 -->
+            <div class="artwork-nav-links">
+              <a href="gallery.html" class="btn btn-outline">← 回到作品列表</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // 讓滾動動畫生效
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    });
+  </script>
+
+</body>
+</html>
