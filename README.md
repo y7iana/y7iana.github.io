@@ -204,30 +204,30 @@ GitHub Pages 就會自動更新！
 
 ### 入門任務（`// TODO [beginner]`）
 
-- [ ] **修改展覽名稱**：在所有 HTML 檔案的 Navbar 和 Footer 把佔位標題換成你自己的展覽名稱
-- [ ] **修改展覽資訊**：在 `index.html` 的展覽資訊卡片修改日期、地點、票價
-- [ ] **修改配色**：在 `css/style.css` 最上方的 `:root` 變數區修改 `--color-primary`，觀察整個網站的顏色變化
-- [ ] **換 Hero 背景圖**：在 `index.html` 找到 `picsum.photos/seed/hero2024` 換成不同的 seed 數字
-- [ ] **修改創作者介紹**：在 `about.html` 把七位創作者的名字和介紹改成你的親友（或真實資訊）
-- [ ] **修改聯絡資訊**：在 `contact.html` 更新展館地址和 Email
+- **修改展覽名稱**：在所有 HTML 檔案的 Navbar 和 Footer 把佔位標題換成你自己的展覽名稱
+- **修改展覽資訊**：在 `index.html` 的展覽資訊卡片修改日期、地點、票價
+- **修改配色**：在 `css/style.css` 最上方的 `:root` 變數區修改 `--color-primary`，觀察整個網站的顏色變化
+- **換 Hero 背景圖**：在 `index.html` 找到 `picsum.photos/seed/hero2024` 換成不同的 seed 數字
+- **修改創作者介紹**：在 `about.html` 把七位創作者的名字和介紹改成你的親友（或真實資訊）
+- **修改聯絡資訊**：在 `contact.html` 更新展館地址和 Email
 
 ### 進階任務（`// TODO [intermediate]`）
 
-- [ ] **新增作品**：在 `js/artworks.js` 新增第 8、9、10 件作品（複製現有物件並修改）
-- [ ] **新增篩選分類**：在 `gallery.html` 新增一個篩選按鈕，並在 `artworks.js` 加對應 category 的作品
-- [ ] **調整 Grid 欄數**：在 `css/gallery.css` 修改 `minmax(280px, 1fr)` 的數字，觀察排版變化
-- [ ] **新增作品欄位**：在 `artwork.html` 的 `meta-row` 區塊新增「作品尺寸」欄位，並在 `artworks.js` 補上對應資料
-- [ ] **讀懂 Swiper 設定**：在 `index.html` 的 Swiper 初始化程式碼修改 `delay` 和 `slidesPerView` 的值
-- [ ] **漢堡選單動畫**：在 `css/style.css` 的 `.hamburger.active` 為三條線加上變成「X」形狀的 CSS 動畫
+- **新增作品**：在 `js/artworks.js` 新增第 8、9、10 件作品（複製現有物件並修改）
+- **新增篩選分類**：在 `gallery.html` 新增一個篩選按鈕，並在 `artworks.js` 加對應 category 的作品
+- **調整 Grid 欄數**：在 `css/gallery.css` 修改 `minmax(280px, 1fr)` 的數字，觀察排版變化
+- **新增作品欄位**：在 `artwork.html` 的 `meta-row` 區塊新增「作品尺寸」欄位，並在 `artworks.js` 補上對應資料
+- **讀懂 Swiper 設定**：在 `index.html` 的 Swiper 初始化程式碼修改 `delay` 和 `slidesPerView` 的值
+- **漢堡選單動畫**：在 `css/style.css` 的 `.hamburger.active` 為三條線加上變成「X」形狀的 CSS 動畫
 
 ### 挑戰任務（`// TODO [challenge]`）
 
-- [ ] **表單驗證**：在 `contact.html` 的 JS 程式碼讀懂表單驗證邏輯，並新增「字數計數器」，顯示 textarea 已輸入幾個字
-- [ ] **自動消失訊息**：在聯絡表單送出成功後，讓成功訊息在 5 秒後自動消失（Hint：`setTimeout`）
-- [ ] **作品切換按鈕**：在 `artwork.html` 新增「上一件」、「下一件」按鈕，讓使用者可以在作品間切換
-- [ ] **搜尋功能**：在 `gallery.html` 新增一個搜尋框，讓使用者可以用作品名稱或作者名字搜尋
-- [ ] **深色/淺色模式切換**：新增一個切換按鈕，讓使用者切換深色和淺色主題（Hint：修改 `:root` 變數）
-- [ ] **了解 Intersection Observer**：在 `js/main.js` 的 `initScrollAnimations` 函式加上 `console.log`，用開發者工具觀察元素進入視窗的時間點
+- **表單驗證**：在 `contact.html` 的 JS 程式碼讀懂表單驗證邏輯，並新增「字數計數器」，顯示 textarea 已輸入幾個字
+- **自動消失訊息**：在聯絡表單送出成功後，讓成功訊息在 5 秒後自動消失（Hint：`setTimeout`）
+- **作品切換按鈕**：在 `artwork.html` 新增「上一件」、「下一件」按鈕，讓使用者可以在作品間切換
+- **搜尋功能**：在 `gallery.html` 新增一個搜尋框，讓使用者可以用作品名稱或作者名字搜尋
+- **深色/淺色模式切換**：新增一個切換按鈕，讓使用者切換深色和淺色主題（Hint：修改 `:root` 變數）
+- **了解 Intersection Observer**：在 `js/main.js` 的 `initScrollAnimations` 函式加上 `console.log`，用開發者工具觀察元素進入視窗的時間點
 
 ---
 
