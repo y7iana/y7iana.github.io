@@ -273,6 +273,7 @@
             <div class="form-group">
               <label for="message">訊息內容 <span style="color:#e55">*</span></label>
               <textarea id="message" name="message" placeholder="請輸入您的問題或想說的話…"></textarea>
+              <div id="char-counter" style="text-align: right; font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.3rem;">已經輸入 0 個字</div>
               <p class="error-msg" id="message-error">訊息至少需要 10 個字元</p>
             </div>
 
@@ -335,6 +336,15 @@
     //   2. 試著在 console.log 加入 debug 訊息，幫助你理解流程
     //   3. 新增一個「字數計數器」，顯示 textarea 還能輸入幾個字
 
+    const messageInput = document.getElementById('message');
+    const charCounter = document.getElementById('char-counter');
+    if (messageInput && charCounter) {
+      messageInput.addEventListener('input', function() {
+        const currentLength = this.value.length;
+        charCounter.textContent = `已經輸入 ${currentLength} 個字`;
+      });
+    }
+
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault(); // 阻止表單的預設送出行為（會重新整理頁面）
 
@@ -377,9 +387,15 @@
 
       // 全部驗證通過 → 顯示成功訊息
       if (isValid) {
-        document.getElementById('success-msg').classList.add('show');
+        const successMsg = document.getElementById('success-msg');
+        successMsg.classList.add('show');
         this.reset(); // 清空表單
+        if (charCounter) charCounter.textContent = '已經輸入 0 個字'; // 重置計數器
+        
         // TODO [challenge] 試著用 setTimeout 讓成功訊息在 5 秒後自動消失
+        setTimeout(() => {
+          successMsg.classList.remove('show');
+        }, 5000);
       }
     });
   </script>

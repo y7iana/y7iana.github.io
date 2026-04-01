@@ -86,6 +86,18 @@
       flex-wrap: wrap;
     }
 
+    @media (max-width: 768px) {
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+
     .hero-scroll {
       position: absolute;
       bottom: var(--spacing-md);
