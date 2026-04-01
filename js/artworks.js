@@ -107,6 +107,19 @@ const ARTWORKS = [
     thumbnail: "https://picsum.photos/seed/artwork7/400/300",
     featured: false,
   },
+  {
+    id: 8,
+    title: "作品八",
+    artist: "作者H",
+    year: 2024,
+    category: "digital",
+    medium: "生成式藝術，程式碼",
+    description:
+      "這是第八件作品的介紹文字。展現了如何透過程式碼自動產生各種紋理與圖形。是科技與藝術結合的示範。",
+    image: "https://picsum.photos/seed/artwork8/800/600",
+    thumbnail: "https://picsum.photos/seed/artwork8/400/300",
+    featured: false,
+  },
 ];
 
 // ─── Helper 工具函式 ────────────────────────────────────────────────────────
