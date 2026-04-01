@@ -3,7 +3,7 @@
 > 一個以「畢業製作展示」為主題的網頁入門教學專案，適合完全新手學習 HTML、CSS 與 JavaScript 的基礎知識。
 > 透過這個專案，你將學會建立有真實感的靜態網站，並透過 GitHub Pages 讓全世界都能看到你的作品！
 
-線上預覽：[https://y7iana.github.io]([https://y7iana.github.io/])
+線上預覽：[https://y7iana.github.io](https://y7iana.github.io)
 
 ---
 
